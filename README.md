@@ -21,18 +21,6 @@ Since no db & cache usage is specified, I am keeping following data models and r
 # Steps to run
 
 Option 1:
-Install nodejs & npm
-cd paspire/
-Run `npm start`
-
-To change port, edit .env file
-
-Option 2:
-
-#docker build . -t {imageName}
-#docker run -p 8080:2001 -d {imageName}
-
-## Important.
 
 To run the project, create a new file .env in root of project and add below contents to it.
 
@@ -42,6 +30,19 @@ To run the project, create a new file .env in root of project and add below cont
     APP_HOST=localhost
     APP_PORT=2001
     APP_STATIC_PATH=public/build
+
+Install nodejs & npm
+cd paspire/
+Run `npm start`
+
+To change port, edit .env file
+
+Option 2:
+
+#docker build . -t {imageName}
+#docker run -p 8080:2001 -v .env:/paspire/.env -d {imageName}
+
+## Important.
 
 # Steps to run Unit Tests
 
