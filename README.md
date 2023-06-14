@@ -8,15 +8,15 @@ Since no db & cache usage is specified, I am keeping following data models and r
     -Customers (with sample credentials)
     -Admins (with sample credentials)
 
-Hence no ORM being used
-Not using await async keywords as all operations are in-memory.
+    Hence no ORM being used
+    Not using await async keywords as all operations are in-memory.
 
-Not maintaing history of dates on which loan & repayment status were changed
-Not storing which admin approved/rejected loan as its of no use in current scope
-Not building loan listing api for customer as its of no use in current scope
-Customer repayment amount is not allwed to be less than scheduled repayment amount
-Customer excess repayment amount is not adjusted against next scheduled repayment.
-Multiple auth tokens can co-exist for customer & admin both
+    Not maintaing history of dates on which loan & repayment status were changed
+    Not storing which admin approved/rejected loan as its of no use in current scope
+    Not building loan listing api for customer as its of no use in current scope
+    Customer repayment amount is not allwed to be less than scheduled repayment amount
+    Customer excess repayment amount is not adjusted against next scheduled repayment.
+    Multiple auth tokens can co-exist for customer & admin both
 
 # Steps to run
 
