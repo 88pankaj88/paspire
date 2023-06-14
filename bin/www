@@ -1,0 +1,91 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+//console.log = () => {}  //uncomment if console.log needs to be disabled
+require("../config/env.conf");
+let http = require("http");
+
+const preStartUp = async function () {
+};
+
+preStartUp()
+  .then(() => {
+    const app = require("../app");
+    const port = normalizePort(process.env.APP_PORT || "2001");
+    app.set("port", port);
+    let server = null;
+    server = http.createServer(app);
+
+    server.on("error", (err) => {
+      onError(err, port);
+    });
+    server.on("listening", () => {
+      onListening(server);
+    });
+
+    server.listen(port);
+
+    function normalizePort(val) {
+      var port = parseInt(val, 10);
+      console.log("PORT:", port);
+      if (isNaN(port)) {
+        // named pipe
+        return val;
+      }
+
+      if (port >= 0) {
+        // port number
+        return port;
+      }
+
+      return false;
+    }
+
+    /**
+     * Event listener for HTTP server "error" event.
+     */
+
+    function onError(error, port) {
+      if (error.syscall !== "listen") {
+        throw error;
+      }
+
+      var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+
+      // handle specific listen errors with friendly messages
+      switch (error.code) {
+        case "EACCES":
+          console.error(bind + " requires elevated privileges");
+          process.exit(1);
+          break;
+        case "EADDRINUSE":
+          console.error(bind + " is already in use");
+          process.exit(1);
+          break;
+        default:
+          console.log(error);
+          throw error;
+      }
+    }
+
+    /**
+     * Event listener for HTTP server "listening" event.
+     */
+
+    function onListening(server) {
+      var addr = server.address();
+      const host = addr.address === "::" ? "localhost" : addr.address;
+      var bind = typeof addr === "string" ? addr : addr.port;
+      console.info(
+        `Server running on ${process.env.APP_REST_PROTOCOL}://${
+          process.env.APP_HOST
+        }${process.env.APP_PORT ? ":".concat(process.env.APP_PORT) : ""}`
+      );
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+    process.exit(0);
+  });
