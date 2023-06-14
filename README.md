@@ -39,10 +39,8 @@ To change port, edit .env file
 
 Option 2:
 
-#docker build . -t {imageName}
-#docker run -p 8080:2001 -v .env:/paspire/.env -d {imageName}
-
-## Important.
+    docker build . -t {imageName}
+    docker run -p 8080:2001 -v .env:/paspire/.env -d {imageName}
 
 # Steps to run Unit Tests
 
